@@ -9,13 +9,12 @@ export const Navbar = () => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState('');
     const { state, dispatch } = useContext(dataContext);
-    console.log(state.isDarkMode);
 
     useEffect(() => {
         setActiveLink(location.pathname)
     }, [location])
 
-    const toggleDarkMode = (e) => {
+    const toggleDarkMode = () => {
         dispatch({ type: 'isDarkMode', payload: !state.isDarkMode })
 
     }
@@ -24,22 +23,13 @@ export const Navbar = () => {
         <div className={`w-full flex justify-between px-7 py-3 ${state.isDarkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
             <ul className="w-1/2 flex justify-stat gap-5 items-center text-lg">
 
-                <li className="text-2xl text-cyan-500">
-                    <NavLink to="/">TextUtils
-                    </NavLink>
-                </li>
+                <li className="text-2xl text-cyan-500"><NavLink to="/">TextUtils</NavLink></li>
 
-                <li>
-                    <NavLink to="/" className={activeLink === "/" ? 'text-yellow-400' : ""}>Home</NavLink>
-                </li>
+                <li><NavLink to="/" className={activeLink === "/" ? 'text-yellow-400' : ""}>Home</NavLink></li>
 
-                <li>
-                    <NavLink to="/about" className={activeLink === "/about" ? 'text-yellow-400' : ""}>About Us</NavLink>
-                </li>
+                <li><NavLink to="/about" className={activeLink === "/about" ? 'text-yellow-400' : ""}>About Us</NavLink></li>
 
-                <li>
-                    <NavLink to="/contact" className={activeLink === "/contact" ? 'text-yellow-400' : ""}>contact Us</NavLink>
-                </li>
+                <li><NavLink to="/contact" className={activeLink === "/contact" ? 'text-yellow-400' : ""}>contact Us</NavLink></li>
 
             </ul>
 
@@ -50,12 +40,10 @@ export const Navbar = () => {
                         <input
                             type="checkbox"
                             onChange={toggleDarkMode}
-                            // checked={isDarkMode}
-                            className="opacity-0 h-0 w-0" />
-                        <span className="slider round"></span>
-                        {/* <span className={`slider ${isDarkMode ? 'bg-gray-600' : 'bg-gray-300'}`}></span> */}
+                            className="opacity-0 h-0 w-0 " />
+                        <span className="slider round "></span>
                     </label>
-                    <span>Enable dark Mode</span>
+                    <span>{state.isDarkMode ? "Enable light Mode" : "Enable dark Mode"}</span>
                 </div>
             </div>
 

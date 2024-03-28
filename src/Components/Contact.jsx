@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import { dataContext } from '../Context/Context'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Contact = () => {
 

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { dataContext } from "../Context/Context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AboutUs = () => {
     const { state } = useContext(dataContext);

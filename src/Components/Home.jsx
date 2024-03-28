@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import { dataContext } from '../Context/Context'
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
 
@@ -12,11 +12,12 @@ export const Home = () => {
     const copyToClipboard = () => {
         textRef.current.select();
         document.execCommand('copy');
+        toast.success('Text Copied successfully!!')
     }
 
     const showAlert = (e) => {
         if (e.target.value) {
-            alert('you cant change anything here')
+            toast.warn('you cant change anything here')
         }
     }
 
@@ -28,7 +29,7 @@ export const Home = () => {
             <div className='w-full flex flex-col justify-center items-center'>
                 <h2 className='w-full ml-28 text-xl font-semibold flex text-start'>Enter Your Text Here:</h2>
 
-                <textarea type='text' ref={textRef} value={state.text} onChange={(e) => dispatch({ type: 'textChange', payload: e.target.value })} className={`w-11/12 h-32 border p-4 outline-blue-400 mt-2 rounded-md ${state.isDarkMode ? 'text-white bg-gray-600 border-0' : 'text-black bg-white'}`} />
+                <textarea type='text' ref={textRef} value={state.text} onChange={(e) => dispatch({ type: 'textChange', payload: e.target.value })} className={`w-11/12 h-32 border p-4 focus:outline-none focus:ring focus:ring-blue-300 mt-2 rounded-md border-1 ${state.isDarkMode ? 'text-white bg-gray-600 border-1' : 'text-black bg-white'}`} />
 
                 <div className='w-full gap-4 mt-4 ml-28 text-md flex text-start'>
                     <button onClick={() => dispatch({ type: 'upperCase' })} className='bg-blue-500 py-2 px-3 rounded-md text-white'>Convert to upperCase</button>
@@ -53,7 +54,7 @@ export const Home = () => {
 
             <div className='w-full flex flex-col justify-center items-center mb-6'>
                 <h2 className='w-full ml-28 text-xl font-semibold flex text-start'>Preview</h2>
-                <textarea type='text' value={state.text} onChange={showAlert} className={`w-11/12 h-20 border p-4 mt-2 rounded-md outline-blue-400 ${state.isDarkMode ? 'text-white bg-gray-600 border-0' : 'text-black bg-white'}`} />
+                <textarea type='text' value={state.text} onChange={showAlert} className={`w-11/12 h-20 border p-4 mt-2 rounded-md focus:outline-none focus:ring focus:ring-blue-300 ${state.isDarkMode ? 'text-white bg-gray-600 border-0' : 'text-black bg-white'}`} />
             </div>
         </div>
     )
